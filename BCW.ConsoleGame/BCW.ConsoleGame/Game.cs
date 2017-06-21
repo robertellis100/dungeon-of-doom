@@ -1,14 +1,15 @@
 ﻿using BCW.ConsoleGame.Events;
 using BCW.ConsoleGame.Models;
+using BCW.ConsoleGame.Models.Commands;
 using BCW.ConsoleGame.Models.Scenes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace BCW.ConsoleGame
 {
@@ -28,7 +29,20 @@ namespace BCW.ConsoleGame
         {
             var scene = Scenes.FirstOrDefault(s => s.MapPosition.X == position.X && s.MapPosition.Y == position.Y);
 
-            scene?.Enter();
+            if (scene != null)
+            {
+                scene.Enter();
+            }
+        }
+
+        private void gameMenuSelected(object sender, GameEventArgs args)
+        {
+            switch (args.Keys.ToLower())
+            {
+                case "x":
+                    Environment.Exit(0);
+                    break;
+            }
         }
 
         private void sceneNavigated(object sender, NavigationEventArgs args)
@@ -56,52 +70,50 @@ namespace BCW.ConsoleGame
 
             var nextScene = Scenes.FirstOrDefault(s => s.MapPosition.X == toPosition.X && s.MapPosition.Y == toPosition.Y);
 
-            nextScene?.Enter();
+            if (nextScene != null)
+            {
+                nextScene.Enter();
+            }
         }
 
         private void loadScenes()
         {
-            //Scenes.Add(new Scene
-            //(
-            //    "Entry Way",
-            //    "You're standing in a small empty room with a door on the north wall.",
-            //    new MapPosition(9, 5),
-            //    new List<ICommand>
-            //    {
-            //        new NavigationCommand { Keys = "n", Description = "Go North", Direction = Direction.North }
-            //    }
-            //));
-
-
             Scenes = loadData();
-           
 
             foreach (var scene in Scenes)
             {
+                scene.GameMenuSelected += gameMenuSelected;
                 scene.Navigated += sceneNavigated;
             }
         }
 
         private List<IScene> loadData()
         {
-            //read scene data from json file
-            //and deserialize it to a Scene object
-            //and 
             var scenes = new List<IScene>();
             var dataFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "Scenes.json");
+
             using (StreamReader reader = File.OpenText(dataFilePath))
             {
-                var sceneData = (JObject) JToken.ReadFrom(new JsonTextReader(reader));
-                var scenesJson = (JArray) sceneData.GetValue("Scenes");
-                foreach (JToken sceneJson in scenesJson)
-                {
-                    var scene = JsonConvert.DeserializeObject<Scene>(sceneJson.ToString());
-                    scenes.Add(scene);
-                }
-                
-            }
-            return scenes;
+                var sceneData = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
 
+                var scenesJson = (JArray)sceneData.GetValue("Scenes");
+
+                scenes = scenesJson.Select(s => new Scene
+                (
+                    (string)s["Title"],
+                    (string)s["Description"],
+                    new MapPosition((int)s["MapPosition"]["X"], (int)s["MapPosition"]["Y"]),
+                    (s["NavigationCommands"] as JArray).Select(c => new NavigationCommand
+                    {
+                        Keys = (string)c["Keys"],
+                        Description = (string)c["Description"],
+                        Direction = (Direction)Enum.Parse(typeof(Direction), (string)c["Direction"])
+                    }).ToList<ICommand>(),
+                    new List<ICommand> { new GameCommand { Keys = "X", Description = "Exit The Game"} }
+                )).ToList<IScene>();
+            }
+
+            return scenes;
         }
     }
 }

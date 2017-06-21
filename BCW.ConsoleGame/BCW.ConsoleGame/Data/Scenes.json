@@ -12,10 +12,10 @@
         "X": 9,
         "Y": 5
       },
-      "Commands": [
+      "NavigationCommands": [
         {
           "Type": "Navigation",
-          "Keys": "n",
+          "Keys": "N",
           "Description": "Go North",
           "Direction": "North"
         }
@@ -29,22 +29,22 @@
         "X": 9,
         "Y": 4
       },
-      "Commands": [
+      "NavigationCommands": [
         {
           "Type": "Navigation",
-          "Keys": "n",
+          "Keys": "N",
           "Description": "Go North",
           "Direction": "North"
         },
         {
           "Type": "Navigation",
-          "Keys": "w",
+          "Keys": "W",
           "Description": "Go West",
           "Direction": "West"
         },
         {
           "Type": "Navigation",
-          "Keys": "s",
+          "Keys": "S",
           "Description": "Go South",
           "Direction": "South"
         }
@@ -58,22 +58,22 @@
         "X": 8,
         "Y": 4
       },
-      "Commands": [
+      "NavigationCommands": [
         {
           "Type": "Navigation",
-          "Keys": "n",
+          "Keys": "N",
           "Description": "Go North",
           "Direction": "North"
         },
         {
           "Type": "Navigation",
-          "Keys": "w",
+          "Keys": "W",
           "Description": "Go West",
           "Direction": "West"
         },
         {
           "Type": "Navigation",
-          "Keys": "e",
+          "Keys": "E",
           "Description": "Go East",
           "Direction": "East"
         }
@@ -87,10 +87,10 @@
         "X": 7,
         "Y": 4
       },
-      "Commands": [
+      "NavigationCommands": [
         {
           "Type": "Navigation",
-          "Keys": "e",
+          "Keys": "E",
           "Description": "Go East",
           "Direction": "East"
         }
@@ -104,10 +104,10 @@
         "X": 9,
         "Y": 3
       },
-      "Commands": [
+      "NavigationCommands": [
         {
           "Type": "Navigation",
-          "Keys": "s",
+          "Keys": "S",
           "Description": "Go South",
           "Direction": "South"
         }
@@ -121,22 +121,22 @@
         "X": 8,
         "Y": 3
       },
-      "Commands": [
+      "NavigationCommands": [
         {
           "Type": "Navigation",
-          "Keys": "n",
+          "Keys": "N",
           "Description": "Go North",
           "Direction": "North"
         },
         {
           "Type": "Navigation",
-          "Keys": "w",
+          "Keys": "W",
           "Description": "Go West",
           "Direction": "West"
         },
         {
           "Type": "Navigation",
-          "Keys": "s",
+          "Keys": "S",
           "Description": "Go South",
           "Direction": "South"
         }
@@ -150,16 +150,16 @@
         "X": 8,
         "Y": 2
       },
-      "Commands": [
+      "NavigationCommands": [
         {
           "Type": "Navigation",
-          "Keys": "n",
+          "Keys": "N",
           "Description": "Go North",
           "Direction": "North"
         },
         {
           "Type": "Navigation",
-          "Keys": "s",
+          "Keys": "S",
           "Description": "Go South",
           "Direction": "South"
         }
@@ -173,16 +173,16 @@
         "X": 8,
         "Y": 1
       },
-      "Commands": [
+      "NavigationCommands": [
         {
           "Type": "Navigation",
-          "Keys": "w",
+          "Keys": "W",
           "Description": "Go West",
           "Direction": "West"
         },
         {
           "Type": "Navigation",
-          "Keys": "s",
+          "Keys": "S",
           "Description": "Go South",
           "Direction": "South"
         }
@@ -196,22 +196,22 @@
         "X": 7,
         "Y": 1
       },
-      "Commands": [
+      "NavigationCommands": [
         {
           "Type": "Navigation",
-          "Keys": "e",
+          "Keys": "E",
           "Description": "Go East",
           "Direction": "East"
         },
         {
           "Type": "Navigation",
-          "Keys": "w",
+          "Keys": "W",
           "Description": "Go West",
           "Direction": "West"
         },
         {
           "Type": "Navigation",
-          "Keys": "s",
+          "Keys": "S",
           "Description": "Go South",
           "Direction": "South"
         }
