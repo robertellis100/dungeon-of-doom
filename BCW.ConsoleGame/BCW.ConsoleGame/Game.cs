@@ -1,9 +1,9 @@
-﻿using BCW.ConsoleGame.Events;
+﻿using BCW.ConsoleGame.Data;
+using BCW.ConsoleGame.Events;
 using BCW.ConsoleGame.Models;
 using BCW.ConsoleGame.Models.Commands;
 using BCW.ConsoleGame.Models.Scenes;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using BCW.ConsoleGame.User;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,14 +15,20 @@ namespace BCW.ConsoleGame
 {
     public class Game
     {
+        public IDataProvider DataProvider { get; set; }
+        public IUserInterface UserInterface { get; set; }
         public List<IScene> Scenes { get; set; }
 
-        public Game()
+        public Game(IDataProvider dataProvider, IUserInterface userInterface)
         {
-            Scenes = new List<IScene>();
-            loadScenes();
+            DataProvider = dataProvider;
+            UserInterface = userInterface;
 
-            gotoPosition(new MapPosition(9, 5));
+            Scenes = DataProvider.Scenes;
+
+            subscribeToEvents();
+
+            gotoPosition(DataProvider.StartPosition);
         }
 
         void gotoPosition(MapPosition position)
@@ -40,6 +46,7 @@ namespace BCW.ConsoleGame
             switch (args.Keys.ToLower())
             {
                 case "x":
+                    DataProvider.SaveGameState();
                     Environment.Exit(0);
                     break;
             }
@@ -72,48 +79,20 @@ namespace BCW.ConsoleGame
 
             if (nextScene != null)
             {
+                DataProvider.StartPosition = nextScene.MapPosition;
                 nextScene.Enter();
             }
         }
 
-        private void loadScenes()
+        private void subscribeToEvents()
         {
-            Scenes = loadData();
-
             foreach (var scene in Scenes)
             {
+                scene.UserInterface = UserInterface;
                 scene.GameMenuSelected += gameMenuSelected;
                 scene.Navigated += sceneNavigated;
             }
         }
 
-        private List<IScene> loadData()
-        {
-            var scenes = new List<IScene>();
-            var dataFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "Scenes.json");
-
-            using (StreamReader reader = File.OpenText(dataFilePath))
-            {
-                var sceneData = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
-
-                var scenesJson = (JArray)sceneData.GetValue("Scenes");
-
-                scenes = scenesJson.Select(s => new Scene
-                (
-                    (string)s["Title"],
-                    (string)s["Description"],
-                    new MapPosition((int)s["MapPosition"]["X"], (int)s["MapPosition"]["Y"]),
-                    (s["NavigationCommands"] as JArray).Select(c => new NavigationCommand
-                    {
-                        Keys = (string)c["Keys"],
-                        Description = (string)c["Description"],
-                        Direction = (Direction)Enum.Parse(typeof(Direction), (string)c["Direction"])
-                    }).ToList<ICommand>(),
-                    new List<ICommand> { new GameCommand { Keys = "X", Description = "Exit The Game"} }
-                )).ToList<IScene>();
-            }
-
-            return scenes;
-        }
     }
 }
