@@ -1,0 +1,42 @@
+﻿{
+  "StartPosition": {
+    "X": 9,
+    "Y": 5
+  },
+  "Scenes": [
+    {
+      "Title": "Entry Way",
+      "Description": "You're standing in a small empty room with a door on the north wall.",
+      "Difficulty":  0,
+      "MapPosition": {
+        "X": 9,
+        "Y": 5
+      },
+      "NavigationCommands": [
+        {
+          "Keys": "N",
+          "Description": "Go North",
+          "Direction": "North"
+        }
+      ]
+    },
+    {
+      "Title": "Room 1",
+      "Description": "You're standing in a small empty room with a door on the south wall.",
+      "Difficulty": 4,
+      "MapPosition": {
+        "X": 9,
+        "Y": 4
+      },
+      "NavigationCommands": [
+        {
+          "Type": "Navigation",
+          "Keys": "S",
+          "Description": "Go South",
+          "Direction": "South"
+        }
+      ]
+    }
+  ]
+
+}

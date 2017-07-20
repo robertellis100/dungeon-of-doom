@@ -8,6 +8,7 @@
     {
       "Title": "Entry Way",
       "Description": "You're standing in a small empty room with a door on the north wall.",
+      "Difficulty":  0,
       "MapPosition": {
         "X": 9,
         "Y": 5
@@ -25,6 +26,7 @@
     {
       "Title": "Great Room",
       "Description": "You're standing in an ornate great room with doors on the south, west, and north walls.",
+      "Difficulty": 4,
       "MapPosition": {
         "X": 9,
         "Y": 4
@@ -53,6 +55,7 @@
 
     {
       "Title": "Dark Room",
+      "Difficulty": 2,
       "Description": "You're standing in a dark bleak room with doors on the north, west, and east walls.",
       "MapPosition": {
         "X": 8,
@@ -83,6 +86,7 @@
     {
       "Title": "Small Armory",
       "Description": "You're standing in the small armory with a doors east wall.",
+      "Difficulty": 3,
       "MapPosition": {
         "X": 7,
         "Y": 4
@@ -100,6 +104,7 @@
     {
       "Title": "Gallery",
       "Description": "You're standing in, what appears to be, a room with walls covered floor-to-ceiling with golden framed art. Also there is a door on the south wall.",
+      "Difficulty": 2,
       "MapPosition": {
         "X": 9,
         "Y": 3
@@ -117,6 +122,7 @@
     {
       "Title": "Candle Room",
       "Description": "You're standing in a candle lit room with doors on the north, west, and south walls.",
+      "Difficulty": 2,
       "MapPosition": {
         "X": 8,
         "Y": 3
@@ -146,6 +152,7 @@
     {
       "Title": "Broken Chair Room",
       "Description": "You're standing in a room with dozens of broken chairs strewn about the area. There are also doors on the north and south walls.",
+      "Difficulty": 3,
       "MapPosition": {
         "X": 8,
         "Y": 2
@@ -168,7 +175,8 @@
 
     {
       "Title": "Silver Room",
-      "Description": "You're standing in a room with dozens of broken chairs strewn about the area. There are also doors on the north and south walls.",
+      "Description": "You're standing in a room with hundreds of spoons protruding from the walls. There are also doors on the north and south walls.",
+      "Difficulty": 3,
       "MapPosition": {
         "X": 8,
         "Y": 1
@@ -192,6 +200,7 @@
     {
       "Title": "Goat Room",
       "Description": "You're standing in a room with dozens of smelly goats. There are also doors on the north and south walls.",
+      "Difficulty": 4,
       "MapPosition": {
         "X": 7,
         "Y": 1
